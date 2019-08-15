@@ -1,4 +1,8 @@
-# Migrating from version 1.x to 2.x
+---
+id: migrationv2
+title: Migrating from version 1.x to 2.x
+sidebar_label: Migrating from version 1.x to 2.x
+---
 
 Version 2.x of react-native-camera moves to using Firebase MLKit for advanced features such as text/face recognition. Users can now opt into useing MLKit in their app by choosing a certain flavor of the library (Android) or selecting a desired podspec (iOS). This allows users who do not need Firebase MLKit-based features to not be forced to set up a Firebase project.
 
@@ -59,7 +63,7 @@ android {
 - add to the bottom of `android/app/build.gradle` file the following:
 
 ```gradle
-  apply plugin: com.google.gms.google-services'
+  apply plugin: 'com.google.gms.google-services'
 ```
 
 3. Configure your app to automatically download the ML model to the device after your app is installed from the Play Store. If you do not enable install-time model downloads, the model will be downloaded the first time you run the on-device detector. Requests you make before the download has completed will produce no results.

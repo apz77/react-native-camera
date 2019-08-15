@@ -2,13 +2,13 @@ package org.reactnative.camera;
 
 import androidx.annotation.Nullable;
 import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.google.android.cameraview.AspectRatio;
 import com.google.android.cameraview.Size;
-import org.reactnative.camera.CameraModule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,6 +83,11 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
     view.setFlash(torchMode);
   }
 
+  @ReactProp(name = "exposure")
+  public void setExposureCompensation(RNCameraView view, int exposure){
+    view.setExposureCompensation(exposure);
+  }
+
   @ReactProp(name = "autoFocus")
   public void setAutoFocus(RNCameraView view, boolean autoFocus) {
     view.setAutoFocus(autoFocus);
@@ -91,6 +96,13 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
   @ReactProp(name = "focusDepth")
   public void setFocusDepth(RNCameraView view, float depth) {
     view.setFocusDepth(depth);
+  }
+
+  @ReactProp(name = "autoFocusPointOfInterest")
+  public void setAutoFocusPointOfInterest(RNCameraView view, ReadableMap coordinates) {
+    float x = (float) coordinates.getDouble("x");
+    float y = (float) coordinates.getDouble("y");
+    view.setAutoFocusPointOfInterest(x, y);
   }
 
   @ReactProp(name = "zoom")
@@ -156,6 +168,11 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
   @ReactProp(name = "faceDetectionClassifications")
   public void setFaceDetectionClassifications(RNCameraView view, int classifications) {
     view.setFaceDetectionClassifications(classifications);
+  }
+
+  @ReactProp(name = "trackingEnabled")
+  public void setTracking(RNCameraView view, boolean trackingEnabled) {
+    view.setTracking(trackingEnabled);
   }
 
   @ReactProp(name = "googleVisionBarcodeDetectorEnabled")
